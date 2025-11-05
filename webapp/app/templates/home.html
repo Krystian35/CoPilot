@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Catalog{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Categories</h5>
+        <p class="card-text">Total categories: <strong>{{ categories_count }}</strong></p>
+        <a href="{{ url_for('categories.list_categories') }}" class="btn btn-primary">View categories</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Products</h5>
+        <p class="card-text">Total products: <strong>{{ products_count }}</strong></p>
+        <a href="{{ url_for('products.list_products') }}" class="btn btn-primary">View products</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

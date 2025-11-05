@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ 'Edit' if category else 'Add' }} Category{% endblock %}
+
+{% block content %}
+<h1>{{ 'Edit' if category else 'Add' }} Category</h1>
+<form method="post">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input id="name" name="name" class="form-control" value="{{ category.name if category }}">
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea id="description" name="description" class="form-control">{{ category.description if category }}</textarea>
+  </div>
+  <button class="btn btn-primary" type="submit">Save</button>
+  <a href="{{ url_for('categories.list_categories') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

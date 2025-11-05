@@ -1,12 +1,13 @@
 # Deliberately buggy code for Lab 07
 
 def calculate_average(numbers):
-    total = 0
-    for n in numbers:
-        total += n
+    # handle empty input explicitly
+    if not numbers:
+        raise ValueError("numbers must not be empty")
 
-    # BUG: len(total) - incorrect, total is an integer
-    return total / len(total)
+    # use built-in sum and correct length
+    total = sum(numbers)
+    return total / len(numbers)
 
 
 values = [10, 20, 30, 40]

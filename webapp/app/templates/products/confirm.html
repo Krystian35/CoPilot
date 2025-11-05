@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Product {{ action|title }}{% endblock %}
+
+{% block content %}
+{% if action == 'confirm_delete' %}
+<h1>Confirm Delete</h1>
+<p>Are you sure you want to delete product <strong>{{ product.title }}</strong>?</p>
+<form method="post">
+  <button class="btn btn-danger" type="submit">Yes, delete</button>
+  <a href="{{ url_for('products.list_products') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% else %}
+<h1>Product {{ action|title }}</h1>
+<p>
+  <strong>{{ product.title }}</strong><br>
+  {% if product.image %}
+  <img src="{{ url_for('static', filename='images/' ~ product.image) }}" alt="{{ product.title }}"
+    style="max-height:120px; display:block; margin-bottom:8px;">
+  {% else %}
+  <img src="{{ url_for('static', filename='images/placeholder.svg') }}" alt="placeholder"
+    style="max-height:120px; display:block; margin-bottom:8px;">
+  {% endif %}
+  by {{ product.author }}<br>
+  Category: {{ product.category_name }}<br>
+  Price: {{ '%.2f'|format(product.price) if product.price is not none else '—' }}
+</p>
+<a href="{{ url_for('products.list_products') }}" class="btn btn-primary">Back to list</a>
+{% endif %}
+{% endblock %}

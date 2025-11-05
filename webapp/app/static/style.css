@@ -1,0 +1,4 @@
+/* Custom styles (optional). Use Bootstrap CDN in templates for baseline styles. */
+body {
+	padding-top: 70px; /* space for navbar */
+}

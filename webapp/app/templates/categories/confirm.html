@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Category {{ action|title }}{% endblock %}
+
+{% block content %}
+{% if action == 'confirm_delete' %}
+<h1>Confirm Delete</h1>
+<p>Are you sure you want to delete category <strong>{{ category.name }}</strong>?</p>
+<form method="post">
+  <button class="btn btn-danger" type="submit">Yes, delete</button>
+  <a href="{{ url_for('categories.list_categories') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% else %}
+<h1>Category {{ action|title }}</h1>
+<p>
+  <strong>{{ category.name }}</strong><br>
+  {{ category.description }}
+</p>
+<a href="{{ url_for('categories.list_categories') }}" class="btn btn-primary">Back to list</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ 'Edit' if product else 'Add' }} Product{% endblock %}
+
+{% block content %}
+<h1>{{ 'Edit' if product else 'Add' }} Product</h1>
+<form method="post" enctype="multipart/form-data">
+  {% if product and product.image %}
+  <div class="mb-3">
+    <label class="form-label">Current image</label>
+    <div>
+      <img src="{{ url_for('static', filename='images/' ~ product.image) }}" alt="{{ product.title }}"
+        style="max-height:120px;">
+    </div>
+  </div>
+  {% endif %}
+  <div class="mb-3">
+    <label for="category_id" class="form-label">Category</label>
+    <select id="category_id" name="category_id" class="form-select">
+      <option value="">-- choose --</option>
+      {% for c in categories %}
+      <option value="{{ c.id }}" {% if product and product.category_id==c.id %}selected{% endif %}>{{ c.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input id="title" name="title" class="form-control" value="{{ product.title if product }}">
+  </div>
+
+  <div class="mb-3">
+    <label for="author" class="form-label">Author</label>
+    <input id="author" name="author" class="form-control" value="{{ product.author if product }}">
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input id="price" name="price" class="form-control" value="{{ product.price if product is not none }}">
+  </div>
+
+  <div class="mb-3">
+    <label for="stock" class="form-label">Stock</label>
+    <input id="stock" name="stock" class="form-control" value="{{ product.stock if product is not none }}">
+  </div>
+
+  <div class="mb-3">
+    <label for="image" class="form-label">Image (optional)</label>
+    <input id="image" name="image" type="file" class="form-control" accept="image/*">
+  </div>
+
+  <button class="btn btn-primary" type="submit">Save</button>
+  <a href="{{ url_for('products.list_products') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

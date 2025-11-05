@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="320" viewBox="0 0 980 320">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+    </marker>
+    <style>
+      .box { fill: #f8f9fb; stroke: #2b2f33; stroke-width:1.5; rx:8; }
+      .svc { fill: #fff7e6; stroke: #b36b00; stroke-width:1.5; rx:6; }
+      .text { font-family: Arial, Helvetica, sans-serif; font-size:13px; fill:#111; }
+      .title { font-weight:700; font-size:14px; }
+      .note { font-size:12px; fill:#444; }
+    </style>
+  </defs>
+
+  <!-- Left: input -->
+  <g transform="translate(20,40)">
+    <rect class="box" x="0" y="0" width="140" height="56" />
+    <text class="text title" x="10" y="20">Order (dict)</text>
+    <text class="text note" x="10" y="40">customer_email, payment_token, items</text>
+  </g>
+
+  <!-- Pipeline boxes -->
+  <g transform="translate(200,24)">
+    <rect class="box" x="0" y="0" width="160" height="48" />
+    <text class="text title" x="12" y="28">validate_request</text>
+  </g>
+
+  <g transform="translate(380,24)">
+    <rect class="box" x="0" y="0" width="140" height="48" />
+    <text class="text title" x="12" y="28">price_items</text>
+  </g>
+
+  <g transform="translate(540,24)">
+    <rect class="box" x="0" y="0" width="180" height="48" />
+    <text class="text title" x="12" y="28">reserve_inventory</text>
+  </g>
+
+  <g transform="translate(750,24)">
+    <rect class="box" x="0" y="0" width="160" height="48" />
+    <text class="text title" x="12" y="28">charge_payment</text>
+  </g>
+
+  <g transform="translate(920,24)">
+    <rect class="box" x="0" y="0" width="220" height="48" />
+    <text class="text title" x="10" y="28">send_notification</text>
+  </g>
+
+  <!-- Arrows between pipeline steps -->
+  <line x1="160" y1="68" x2="200" y2="48" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="360" y1="48" x2="380" y2="48" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="520" y1="48" x2="540" y2="48" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="720" y1="48" x2="750" y2="48" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="910" y1="48" x2="920" y2="48" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Service boxes (side) -->
+  <g transform="translate(260,120)">
+    <rect class="svc" x="0" y="0" width="140" height="44" />
+    <text class="text" x="10" y="26">ProductCatalog</text>
+  </g>
+
+  <g transform="translate(760,120)">
+    <rect class="svc" x="0" y="0" width="120" height="44" />
+    <text class="text" x="10" y="26">PaymentGateway</text>
+  </g>
+
+  <g transform="translate(940,120)">
+    <rect class="svc" x="0" y="0" width="120" height="44" />
+    <text class="text" x="10" y="26">Notifier</text>
+  </g>
+
+  <!-- Connections from services to steps -->
+  <line x1="320" y1="120" x2="240" y2="72" stroke="#666" stroke-width="1.6" marker-end="url(#arrow)" />
+  <text class="text" x="280" y="110">get/has_stock/reserve</text>
+
+  <line x1="800" y1="120" x2="860" y2="72" stroke="#666" stroke-width="1.6" marker-end="url(#arrow)" />
+  <text class="text" x="820" y="110">charge</text>
+
+  <line x1="980" y1="120" x2="990" y2="72" stroke="#666" stroke-width="1.6" marker-end="url(#arrow)" />
+  <text class="text" x="960" y="110">send</text>
+
+  <!-- Legend / notes -->
+  <g transform="translate(20,200)">
+    <text class="text title" x="0" y="0">Pipeline summary</text>
+    <text class="text note" x="0" y="20">OrderService.pipeline = ["validate_request", "price_items", "reserve_inventory", "charge_payment", "send_notification"]</text>
+  </g>
+
+</svg>
